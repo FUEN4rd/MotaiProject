@@ -234,13 +234,15 @@ namespace MotaiProject.Controllers
                 List<StatusCartViewModel> cartList = new List<StatusCartViewModel>();
                 
                 foreach (var items in StateList)
-                {                 
+                {
+                    tPromotion discount = dbContext.tPromotions.Where(p => p.PromotionId == items.sProductId).FirstOrDefault();
                     tProduct cartProd = dbContext.tProducts.Where(p => p.ProductId == items.sProductId).FirstOrDefault();
                     StatusCartViewModel cartC = new StatusCartViewModel();
                     cartC.StatusId = items.StatusId;
                     cartC.pName = cartProd.pName;
                     cartC.pPrice = cartProd.pPrice;
                     cartC.sProductQty = items.sProductQty;
+                    cartC.pDiscountCode = discount.pDiscountCode;
                     cartList.Add(cartC);
                 }                
                 return View(cartList);
