@@ -1,0 +1,2140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MotaiDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bBranch" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tCustomer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cTelePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="cCellPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cGUI" Type="nvarchar" MaxLength="50" />
+          <Property Name="cEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tDiary">
+          <Key>
+            <PropertyRef Name="DiaryId" />
+          </Key>
+          <Property Name="DiaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dEmployeeId" Type="int" Nullable="false" />
+          <Property Name="dDate" Type="date" Nullable="false" />
+          <Property Name="dWeather" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dDiaryNote" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="dWarehouseNameId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="eName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ePosition" Type="int" Nullable="false" />
+          <Property Name="eBranch" Type="int" Nullable="false" />
+          <Property Name="ePassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tFavorite">
+          <Key>
+            <PropertyRef Name="FavoriteId" />
+          </Key>
+          <Property Name="FavoriteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fCustomerId" Type="int" Nullable="false" />
+          <Property Name="fProductId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="oCustomerId" Type="int" />
+          <Property Name="oAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="oDate" Type="date" Nullable="false" />
+          <Property Name="oDeliverDate" Type="date" />
+          <Property Name="oEmployeeId" Type="int" />
+          <Property Name="oCheck" Type="nvarchar" MaxLength="50" />
+          <Property Name="oCheckDate" Type="date" />
+          <Property Name="oPromotionId" Type="int" />
+          <Property Name="cNote" Type="nvarchar" MaxLength="50" />
+          <Property Name="oWarehouseName" Type="int" />
+        </EntityType>
+        <EntityType Name="tOrderDetail">
+          <Key>
+            <PropertyRef Name="oOrderDetailId" />
+          </Key>
+          <Property Name="oOrderDetailId" Type="int" Nullable="false" />
+          <Property Name="oOrderId" Type="int" Nullable="false" />
+          <Property Name="oProductId" Type="int" Nullable="false" />
+          <Property Name="oProductQty" Type="int" Nullable="false" />
+          <Property Name="oNote" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tOrderPay">
+          <Key>
+            <PropertyRef Name="oPayId" />
+          </Key>
+          <Property Name="oPayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="oOrderId" Type="int" Nullable="false" />
+          <Property Name="oOrderInstallment" Type="int" Nullable="false" />
+          <Property Name="oPayType" Type="int" Nullable="false" />
+          <Property Name="oPayment" Type="money" Nullable="false" />
+          <Property Name="oPayDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tOrderPayType">
+          <Key>
+            <PropertyRef Name="oPayTypeId" />
+          </Key>
+          <Property Name="oPayTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="oPayType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPosition">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pPosition" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pCategory" Type="int" Nullable="false" />
+          <Property Name="pMaterial" Type="int" Nullable="false" />
+          <Property Name="pSize" Type="int" Nullable="false" />
+          <Property Name="pLxWxH" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pWeight" Type="float" Nullable="false" />
+          <Property Name="pIntroduction" Type="nvarchar(max)" />
+          <Property Name="pPrice" Type="money" Nullable="false" />
+          <Property Name="pQty" Type="int" />
+        </EntityType>
+        <EntityType Name="tProductCategory">
+          <Key>
+            <PropertyRef Name="pCategoryId" />
+          </Key>
+          <Property Name="pCategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProductImage">
+          <Key>
+            <PropertyRef Name="pImageId" />
+          </Key>
+          <Property Name="pImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="pImage" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProductMaterial">
+          <Key>
+            <PropertyRef Name="pMaterialId" />
+          </Key>
+          <Property Name="pMaterialId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Material" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProductSize">
+          <Key>
+            <PropertyRef Name="pSizeId" />
+          </Key>
+          <Property Name="pSizeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPromotion">
+          <Key>
+            <PropertyRef Name="PromotionId" />
+          </Key>
+          <Property Name="PromotionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PromotionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PromotinoCategory" Type="int" Nullable="false" />
+          <Property Name="PromotionDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pPromotionStartDate" Type="date" Nullable="false" />
+          <Property Name="pPromotionDeadline" Type="date" Nullable="false" />
+          <Property Name="pPromotionWeb" Type="nvarchar(max)" />
+          <Property Name="pADimage" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="pDiscountCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="pDiscount" Type="float" Nullable="false" />
+          <Property Name="pPromotionPostDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPromotionCategory">
+          <Key>
+            <PropertyRef Name="PromotionCategoryID" />
+          </Key>
+          <Property Name="PromotionCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PromtionCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tShipDetail">
+          <Key>
+            <PropertyRef Name="ShipDetailId" />
+          </Key>
+          <Property Name="ShipDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShipId" Type="int" Nullable="false" />
+          <Property Name="sOrderDetailId" Type="int" Nullable="false" />
+          <Property Name="sProductId" Type="int" Nullable="false" />
+          <Property Name="sQuantity" Type="int" Nullable="false" />
+          <Property Name="sWarehouseNameId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tShipList">
+          <Key>
+            <PropertyRef Name="ShipId" />
+          </Key>
+          <Property Name="ShipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sEmployeeId" Type="int" Nullable="false" />
+          <Property Name="sShipSerialValue" Type="int" Nullable="false" />
+          <Property Name="sOrderId" Type="int" Nullable="false" />
+          <Property Name="sShipDate" Type="date" Nullable="false" />
+          <Property Name="sShipNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tStatus">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sCustomerId" Type="int" Nullable="false" />
+          <Property Name="sProductId" Type="int" Nullable="false" />
+          <Property Name="sProductQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tStockDetail">
+          <Key>
+            <PropertyRef Name="StockDetailId" />
+          </Key>
+          <Property Name="StockDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sStockId" Type="int" Nullable="false" />
+          <Property Name="sProductId" Type="int" Nullable="false" />
+          <Property Name="sCost" Type="money" Nullable="false" />
+          <Property Name="sQuantity" Type="int" Nullable="false" />
+          <Property Name="sWarehouseNameId" Type="int" Nullable="false" />
+          <Property Name="sNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tStockList">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sEmployeeId" Type="int" Nullable="false" />
+          <Property Name="sStockSerialValue" Type="int" Nullable="false" />
+          <Property Name="sVendor" Type="nvarchar" MaxLength="50" />
+          <Property Name="sVendorTel" Type="nvarchar" MaxLength="50" />
+          <Property Name="sStockDate" Type="date" Nullable="false" />
+          <Property Name="sStockNote" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tTransfer">
+          <Key>
+            <PropertyRef Name="TransferId" />
+          </Key>
+          <Property Name="TransferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tProductId" Type="int" Nullable="false" />
+          <Property Name="tProductQty" Type="int" Nullable="false" />
+          <Property Name="tEmployeeId" Type="int" Nullable="false" />
+          <Property Name="tWNIdOut" Type="int" Nullable="false" />
+          <Property Name="tWNIdIn" Type="int" Nullable="false" />
+          <Property Name="tDate" Type="date" Nullable="false" />
+          <Property Name="tNote" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tWarehouse">
+          <Key>
+            <PropertyRef Name="WarehouseId" />
+          </Key>
+          <Property Name="WarehouseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseNameId" Type="int" Nullable="false" />
+          <Property Name="wProductId" Type="int" Nullable="false" />
+          <Property Name="wPQty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tWarehouseName">
+          <Key>
+            <PropertyRef Name="WarehouseNameId" />
+          </Key>
+          <Property Name="WarehouseNameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WarehouseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tDiary_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="dEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiary_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="dWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tEmployee_tBranch">
+          <End Role="tBranch" Type="Self.tBranch" Multiplicity="1" />
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="tEmployee">
+              <PropertyRef Name="eBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tEmployee_tPosition">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="tEmployee">
+              <PropertyRef Name="ePosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="0..1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="0..1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tPromotion">
+          <End Role="tPromotion" Type="Self.tPromotion" Multiplicity="1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tPromotion">
+              <PropertyRef Name="PromotionId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="0..1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oWarehouseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderDetail_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tOrderDetail">
+              <PropertyRef Name="oOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tOrderDetail">
+              <PropertyRef Name="oProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderPay_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tOrderPay" Type="Self.tOrderPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tOrderPay">
+              <PropertyRef Name="oOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderPay_tOrderPayType">
+          <End Role="tOrderPayType" Type="Self.tOrderPayType" Multiplicity="1" />
+          <End Role="tOrderPay" Type="Self.tOrderPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrderPayType">
+              <PropertyRef Name="oPayTypeId" />
+            </Principal>
+            <Dependent Role="tOrderPay">
+              <PropertyRef Name="oPayType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductCategory">
+          <End Role="tProductCategory" Type="Self.tProductCategory" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductCategory">
+              <PropertyRef Name="pCategoryId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductMaterial">
+          <End Role="tProductMaterial" Type="Self.tProductMaterial" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductMaterial">
+              <PropertyRef Name="pMaterialId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductSize">
+          <End Role="tProductSize" Type="Self.tProductSize" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductSize">
+              <PropertyRef Name="pSizeId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProductImage_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tProductImage" Type="Self.tProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPromotion_tPromotionCategory">
+          <End Role="tPromotionCategory" Type="Self.tPromotionCategory" Multiplicity="1" />
+          <End Role="tPromotion" Type="Self.tPromotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPromotionCategory">
+              <PropertyRef Name="PromotionCategoryID" />
+            </Principal>
+            <Dependent Role="tPromotion">
+              <PropertyRef Name="PromotinoCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tOrderDetail">
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrderDetail">
+              <PropertyRef Name="oOrderDetailId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sOrderDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tShipList">
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tShipList">
+              <PropertyRef Name="ShipId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="ShipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipList_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tShipList">
+              <PropertyRef Name="sEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipList_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tShipList">
+              <PropertyRef Name="sOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStatus_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="1" />
+          <End Role="tStatus" Type="Self.tStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tStatus">
+              <PropertyRef Name="sCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStatus_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tStatus" Type="Self.tStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tStatus">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tStockList">
+          <End Role="tStockList" Type="Self.tStockList" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStockList">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sStockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockList_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tStockList" Type="Self.tStockList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tStockList">
+              <PropertyRef Name="sEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tWarehouseIn">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tWNIdIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tWarehouseOut">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tWNIdOut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tWarehouse_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tWarehouse" Type="Self.tWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tWarehouse">
+              <PropertyRef Name="wProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tWarehouse_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tWarehouse" Type="Self.tWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tWarehouse">
+              <PropertyRef Name="WarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MotaiDataModelStoreContainer">
+          <EntitySet Name="tBranch" EntityType="Self.tBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCustomer" EntityType="Self.tCustomer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDiary" EntityType="Self.tDiary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tEmployee" EntityType="Self.tEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFavorite" EntityType="Self.tFavorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrder" EntityType="Self.tOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrderDetail" EntityType="Self.tOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrderPay" EntityType="Self.tOrderPay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tOrderPayType" EntityType="Self.tOrderPayType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPosition" EntityType="Self.tPosition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProduct" EntityType="Self.tProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProductCategory" EntityType="Self.tProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProductImage" EntityType="Self.tProductImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProductMaterial" EntityType="Self.tProductMaterial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProductSize" EntityType="Self.tProductSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPromotion" EntityType="Self.tPromotion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPromotionCategory" EntityType="Self.tPromotionCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tShipDetail" EntityType="Self.tShipDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tShipList" EntityType="Self.tShipList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tStatus" EntityType="Self.tStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tStockDetail" EntityType="Self.tStockDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tStockList" EntityType="Self.tStockList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTransfer" EntityType="Self.tTransfer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWarehouse" EntityType="Self.tWarehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWarehouseName" EntityType="Self.tWarehouseName" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tDiary_tEmployee" Association="Self.FK_tDiary_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployee" />
+            <End Role="tDiary" EntitySet="tDiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiary_tWarehouseName" Association="Self.FK_tDiary_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tDiary" EntitySet="tDiary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tEmployee_tBranch" Association="Self.FK_tEmployee_tBranch">
+            <End Role="tBranch" EntitySet="tBranch" />
+            <End Role="tEmployee" EntitySet="tEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tEmployee_tPosition" Association="Self.FK_tEmployee_tPosition">
+            <End Role="tPosition" EntitySet="tPosition" />
+            <End Role="tEmployee" EntitySet="tEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tCustomer" Association="Self.FK_tFavorite_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomer" />
+            <End Role="tFavorite" EntitySet="tFavorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tProduct" Association="Self.FK_tFavorite_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tFavorite" EntitySet="tFavorite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tCustomer" Association="Self.FK_tOrder_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomer" />
+            <End Role="tOrder" EntitySet="tOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tEmployee" Association="Self.FK_tOrder_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployee" />
+            <End Role="tOrder" EntitySet="tOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tPromotion" Association="Self.FK_tOrder_tPromotion">
+            <End Role="tPromotion" EntitySet="tPromotion" />
+            <End Role="tOrder" EntitySet="tOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tWarehouseName" Association="Self.FK_tOrder_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tOrder" EntitySet="tOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderDetail_tOrder" Association="Self.FK_tOrderDetail_tOrder">
+            <End Role="tOrder" EntitySet="tOrder" />
+            <End Role="tOrderDetail" EntitySet="tOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderDetail_tProduct" Association="Self.FK_tOrderDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tOrderDetail" EntitySet="tOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderPay_tOrder" Association="Self.FK_tOrderPay_tOrder">
+            <End Role="tOrder" EntitySet="tOrder" />
+            <End Role="tOrderPay" EntitySet="tOrderPay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderPay_tOrderPayType" Association="Self.FK_tOrderPay_tOrderPayType">
+            <End Role="tOrderPayType" EntitySet="tOrderPayType" />
+            <End Role="tOrderPay" EntitySet="tOrderPay" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductCategory" Association="Self.FK_tProduct_tProductCategory">
+            <End Role="tProductCategory" EntitySet="tProductCategory" />
+            <End Role="tProduct" EntitySet="tProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductMaterial" Association="Self.FK_tProduct_tProductMaterial">
+            <End Role="tProductMaterial" EntitySet="tProductMaterial" />
+            <End Role="tProduct" EntitySet="tProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductSize" Association="Self.FK_tProduct_tProductSize">
+            <End Role="tProductSize" EntitySet="tProductSize" />
+            <End Role="tProduct" EntitySet="tProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProductImage_tProduct" Association="Self.FK_tProductImage_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tProductImage" EntitySet="tProductImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPromotion_tPromotionCategory" Association="Self.FK_tPromotion_tPromotionCategory">
+            <End Role="tPromotionCategory" EntitySet="tPromotionCategory" />
+            <End Role="tPromotion" EntitySet="tPromotion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tOrderDetail" Association="Self.FK_tShipDetail_tOrderDetail">
+            <End Role="tOrderDetail" EntitySet="tOrderDetail" />
+            <End Role="tShipDetail" EntitySet="tShipDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tProduct" Association="Self.FK_tShipDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tShipDetail" EntitySet="tShipDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tShipList" Association="Self.FK_tShipDetail_tShipList">
+            <End Role="tShipList" EntitySet="tShipList" />
+            <End Role="tShipDetail" EntitySet="tShipDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tWarehouseName" Association="Self.FK_tShipDetail_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tShipDetail" EntitySet="tShipDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipList_tEmployee" Association="Self.FK_tShipList_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployee" />
+            <End Role="tShipList" EntitySet="tShipList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipList_tOrder" Association="Self.FK_tShipList_tOrder">
+            <End Role="tOrder" EntitySet="tOrder" />
+            <End Role="tShipList" EntitySet="tShipList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStatus_tCustomer" Association="Self.FK_tStatus_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomer" />
+            <End Role="tStatus" EntitySet="tStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStatus_tProduct" Association="Self.FK_tStatus_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tStatus" EntitySet="tStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tProduct" Association="Self.FK_tStockDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tStockDetail" EntitySet="tStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tStockList" Association="Self.FK_tStockDetail_tStockList">
+            <End Role="tStockList" EntitySet="tStockList" />
+            <End Role="tStockDetail" EntitySet="tStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tWarehouseName" Association="Self.FK_tStockDetail_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tStockDetail" EntitySet="tStockDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockList_tEmployee" Association="Self.FK_tStockList_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployee" />
+            <End Role="tStockList" EntitySet="tStockList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tEmployee" Association="Self.FK_tTransfer_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployee" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tProduct" Association="Self.FK_tTransfer_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tWarehouseIn" Association="Self.FK_tTransfer_tWarehouseIn">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tWarehouseOut" Association="Self.FK_tTransfer_tWarehouseOut">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tTransfer" EntitySet="tTransfer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tWarehouse_tProduct" Association="Self.FK_tWarehouse_tProduct">
+            <End Role="tProduct" EntitySet="tProduct" />
+            <End Role="tWarehouse" EntitySet="tWarehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tWarehouse_tWarehouseName" Association="Self.FK_tWarehouse_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseName" />
+            <End Role="tWarehouse" EntitySet="tWarehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MotaiDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bBranch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tEmployees" Relationship="Self.FK_tEmployee_tBranch" FromRole="tBranch" ToRole="tEmployee" />
+        </EntityType>
+        <EntityType Name="tCustomer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cTelePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cCellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cGUI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tFavorites" Relationship="Self.FK_tFavorite_tCustomer" FromRole="tCustomer" ToRole="tFavorite" />
+          <NavigationProperty Name="tOrders" Relationship="Self.FK_tOrder_tCustomer" FromRole="tCustomer" ToRole="tOrder" />
+          <NavigationProperty Name="tStatus" Relationship="Self.FK_tStatus_tCustomer" FromRole="tCustomer" ToRole="tStatus" />
+        </EntityType>
+        <EntityType Name="tDiary">
+          <Key>
+            <PropertyRef Name="DiaryId" />
+          </Key>
+          <Property Name="DiaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dEmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="dDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="dWeather" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dDiaryNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dWarehouseNameId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tEmployee" Relationship="Self.FK_tDiary_tEmployee" FromRole="tDiary" ToRole="tEmployee" />
+          <NavigationProperty Name="tWarehouseName" Relationship="Self.FK_tDiary_tWarehouseName" FromRole="tDiary" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tEmployee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eAccount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="eName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ePosition" Type="Int32" Nullable="false" />
+          <Property Name="eBranch" Type="Int32" Nullable="false" />
+          <Property Name="ePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tBranch" Relationship="Self.FK_tEmployee_tBranch" FromRole="tEmployee" ToRole="tBranch" />
+          <NavigationProperty Name="tDiaries" Relationship="Self.FK_tDiary_tEmployee" FromRole="tEmployee" ToRole="tDiary" />
+          <NavigationProperty Name="tPosition" Relationship="Self.FK_tEmployee_tPosition" FromRole="tEmployee" ToRole="tPosition" />
+          <NavigationProperty Name="tOrders" Relationship="Self.FK_tOrder_tEmployee" FromRole="tEmployee" ToRole="tOrder" />
+          <NavigationProperty Name="tShipLists" Relationship="Self.FK_tShipList_tEmployee" FromRole="tEmployee" ToRole="tShipList" />
+          <NavigationProperty Name="tStockLists" Relationship="Self.FK_tStockList_tEmployee" FromRole="tEmployee" ToRole="tStockList" />
+          <NavigationProperty Name="tTransfers" Relationship="Self.FK_tTransfer_tEmployee" FromRole="tEmployee" ToRole="tTransfer" />
+        </EntityType>
+        <EntityType Name="tFavorite">
+          <Key>
+            <PropertyRef Name="FavoriteId" />
+          </Key>
+          <Property Name="FavoriteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fCustomerId" Type="Int32" Nullable="false" />
+          <Property Name="fProductId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tCustomer" Relationship="Self.FK_tFavorite_tCustomer" FromRole="tFavorite" ToRole="tCustomer" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tFavorite_tProduct" FromRole="tFavorite" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tOrder">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="oCustomerId" Type="Int32" />
+          <Property Name="oAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="oDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="oDeliverDate" Type="DateTime" Precision="0" />
+          <Property Name="oEmployeeId" Type="Int32" />
+          <Property Name="oCheck" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="oCheckDate" Type="DateTime" Precision="0" />
+          <Property Name="oPromotionId" Type="Int32" />
+          <Property Name="cNote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tCustomer" Relationship="Self.FK_tOrder_tCustomer" FromRole="tOrder" ToRole="tCustomer" />
+          <NavigationProperty Name="tEmployee" Relationship="Self.FK_tOrder_tEmployee" FromRole="tOrder" ToRole="tEmployee" />
+          <NavigationProperty Name="tPromotion" Relationship="Self.FK_tOrder_tPromotion" FromRole="tOrder" ToRole="tPromotion" />
+          <NavigationProperty Name="tOrderDetails" Relationship="Self.FK_tOrderDetail_tOrder" FromRole="tOrder" ToRole="tOrderDetail" />
+          <NavigationProperty Name="tOrderPays" Relationship="Self.FK_tOrderPay_tOrder" FromRole="tOrder" ToRole="tOrderPay" />
+          <NavigationProperty Name="tShipLists" Relationship="Self.FK_tShipList_tOrder" FromRole="tOrder" ToRole="tShipList" />
+          <Property Name="oWarehouseName" Type="Int32" />
+          <NavigationProperty Name="tWarehouseName" Relationship="MotaiDataModel.FK_tOrder_tWarehouseName" FromRole="tOrder" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tOrderDetail">
+          <Key>
+            <PropertyRef Name="oOrderDetailId" />
+          </Key>
+          <Property Name="oOrderDetailId" Type="Int32" Nullable="false" />
+          <Property Name="oOrderId" Type="Int32" Nullable="false" />
+          <Property Name="oProductId" Type="Int32" Nullable="false" />
+          <Property Name="oProductQty" Type="Int32" Nullable="false" />
+          <Property Name="oNote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tOrder" Relationship="Self.FK_tOrderDetail_tOrder" FromRole="tOrderDetail" ToRole="tOrder" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tOrderDetail_tProduct" FromRole="tOrderDetail" ToRole="tProduct" />
+          <NavigationProperty Name="tShipDetails" Relationship="Self.FK_tShipDetail_tOrderDetail" FromRole="tOrderDetail" ToRole="tShipDetail" />
+        </EntityType>
+        <EntityType Name="tOrderPay">
+          <Key>
+            <PropertyRef Name="oPayId" />
+          </Key>
+          <Property Name="oPayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="oOrderId" Type="Int32" Nullable="false" />
+          <Property Name="oOrderInstallment" Type="Int32" Nullable="false" />
+          <Property Name="oPayType" Type="Int32" Nullable="false" />
+          <Property Name="oPayment" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="oPayDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tOrder" Relationship="Self.FK_tOrderPay_tOrder" FromRole="tOrderPay" ToRole="tOrder" />
+          <NavigationProperty Name="tOrderPayType" Relationship="Self.FK_tOrderPay_tOrderPayType" FromRole="tOrderPay" ToRole="tOrderPayType" />
+        </EntityType>
+        <EntityType Name="tOrderPayType">
+          <Key>
+            <PropertyRef Name="oPayTypeId" />
+          </Key>
+          <Property Name="oPayTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="oPayType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tOrderPays" Relationship="Self.FK_tOrderPay_tOrderPayType" FromRole="tOrderPayType" ToRole="tOrderPay" />
+        </EntityType>
+        <EntityType Name="tPosition">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tEmployees" Relationship="Self.FK_tEmployee_tPosition" FromRole="tPosition" ToRole="tEmployee" />
+        </EntityType>
+        <EntityType Name="tProduct">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pCategory" Type="Int32" Nullable="false" />
+          <Property Name="pMaterial" Type="Int32" Nullable="false" />
+          <Property Name="pSize" Type="Int32" Nullable="false" />
+          <Property Name="pLxWxH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pWeight" Type="Double" Nullable="false" />
+          <Property Name="pIntroduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="pQty" Type="Int32" />
+          <NavigationProperty Name="tFavorites" Relationship="Self.FK_tFavorite_tProduct" FromRole="tProduct" ToRole="tFavorite" />
+          <NavigationProperty Name="tOrderDetails" Relationship="Self.FK_tOrderDetail_tProduct" FromRole="tProduct" ToRole="tOrderDetail" />
+          <NavigationProperty Name="tProductCategory" Relationship="Self.FK_tProduct_tProductCategory" FromRole="tProduct" ToRole="tProductCategory" />
+          <NavigationProperty Name="tProductMaterial" Relationship="Self.FK_tProduct_tProductMaterial" FromRole="tProduct" ToRole="tProductMaterial" />
+          <NavigationProperty Name="tProductSize" Relationship="Self.FK_tProduct_tProductSize" FromRole="tProduct" ToRole="tProductSize" />
+          <NavigationProperty Name="tProductImages" Relationship="Self.FK_tProductImage_tProduct" FromRole="tProduct" ToRole="tProductImage" />
+          <NavigationProperty Name="tShipDetails" Relationship="Self.FK_tShipDetail_tProduct" FromRole="tProduct" ToRole="tShipDetail" />
+          <NavigationProperty Name="tStatus" Relationship="Self.FK_tStatus_tProduct" FromRole="tProduct" ToRole="tStatus" />
+          <NavigationProperty Name="tStockDetails" Relationship="Self.FK_tStockDetail_tProduct" FromRole="tProduct" ToRole="tStockDetail" />
+          <NavigationProperty Name="tTransfers" Relationship="Self.FK_tTransfer_tProduct" FromRole="tProduct" ToRole="tTransfer" />
+          <NavigationProperty Name="tWarehouses" Relationship="Self.FK_tWarehouse_tProduct" FromRole="tProduct" ToRole="tWarehouse" />
+        </EntityType>
+        <EntityType Name="tProductCategory">
+          <Key>
+            <PropertyRef Name="pCategoryId" />
+          </Key>
+          <Property Name="pCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tProducts" Relationship="Self.FK_tProduct_tProductCategory" FromRole="tProductCategory" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tProductImage">
+          <Key>
+            <PropertyRef Name="pImageId" />
+          </Key>
+          <Property Name="pImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="pImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tProductImage_tProduct" FromRole="tProductImage" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tProductMaterial">
+          <Key>
+            <PropertyRef Name="pMaterialId" />
+          </Key>
+          <Property Name="pMaterialId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Material" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tProducts" Relationship="Self.FK_tProduct_tProductMaterial" FromRole="tProductMaterial" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tProductSize">
+          <Key>
+            <PropertyRef Name="pSizeId" />
+          </Key>
+          <Property Name="pSizeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tProducts" Relationship="Self.FK_tProduct_tProductSize" FromRole="tProductSize" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tPromotion">
+          <Key>
+            <PropertyRef Name="PromotionId" />
+          </Key>
+          <Property Name="PromotionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromotionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PromotinoCategory" Type="Int32" Nullable="false" />
+          <Property Name="PromotionDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pPromotionStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pPromotionDeadline" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="pPromotionWeb" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="pADimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pDiscountCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pDiscount" Type="Double" Nullable="false" />
+          <Property Name="pPromotionPostDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tOrder" Relationship="Self.FK_tOrder_tPromotion" FromRole="tPromotion" ToRole="tOrder" />
+          <NavigationProperty Name="tPromotionCategory" Relationship="Self.FK_tPromotion_tPromotionCategory" FromRole="tPromotion" ToRole="tPromotionCategory" />
+        </EntityType>
+        <EntityType Name="tPromotionCategory">
+          <Key>
+            <PropertyRef Name="PromotionCategoryID" />
+          </Key>
+          <Property Name="PromotionCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PromtionCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tPromotions" Relationship="Self.FK_tPromotion_tPromotionCategory" FromRole="tPromotionCategory" ToRole="tPromotion" />
+        </EntityType>
+        <EntityType Name="tShipDetail">
+          <Key>
+            <PropertyRef Name="ShipDetailId" />
+          </Key>
+          <Property Name="ShipDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShipId" Type="Int32" Nullable="false" />
+          <Property Name="sOrderDetailId" Type="Int32" Nullable="false" />
+          <Property Name="sProductId" Type="Int32" Nullable="false" />
+          <Property Name="sQuantity" Type="Int32" Nullable="false" />
+          <Property Name="sWarehouseNameId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tOrderDetail" Relationship="Self.FK_tShipDetail_tOrderDetail" FromRole="tShipDetail" ToRole="tOrderDetail" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tShipDetail_tProduct" FromRole="tShipDetail" ToRole="tProduct" />
+          <NavigationProperty Name="tShipList" Relationship="Self.FK_tShipDetail_tShipList" FromRole="tShipDetail" ToRole="tShipList" />
+          <NavigationProperty Name="tWarehouseName" Relationship="Self.FK_tShipDetail_tWarehouseName" FromRole="tShipDetail" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tShipList">
+          <Key>
+            <PropertyRef Name="ShipId" />
+          </Key>
+          <Property Name="ShipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sEmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="sShipSerialValue" Type="Int32" Nullable="false" />
+          <Property Name="sOrderId" Type="Int32" Nullable="false" />
+          <Property Name="sShipDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sShipNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tEmployee" Relationship="Self.FK_tShipList_tEmployee" FromRole="tShipList" ToRole="tEmployee" />
+          <NavigationProperty Name="tOrder" Relationship="Self.FK_tShipList_tOrder" FromRole="tShipList" ToRole="tOrder" />
+          <NavigationProperty Name="tShipDetails" Relationship="Self.FK_tShipDetail_tShipList" FromRole="tShipList" ToRole="tShipDetail" />
+        </EntityType>
+        <EntityType Name="tStatu">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sCustomerId" Type="Int32" Nullable="false" />
+          <Property Name="sProductId" Type="Int32" Nullable="false" />
+          <Property Name="sProductQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tCustomer" Relationship="Self.FK_tStatus_tCustomer" FromRole="tStatus" ToRole="tCustomer" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tStatus_tProduct" FromRole="tStatus" ToRole="tProduct" />
+        </EntityType>
+        <EntityType Name="tStockDetail">
+          <Key>
+            <PropertyRef Name="StockDetailId" />
+          </Key>
+          <Property Name="StockDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sStockId" Type="Int32" Nullable="false" />
+          <Property Name="sProductId" Type="Int32" Nullable="false" />
+          <Property Name="sCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="sQuantity" Type="Int32" Nullable="false" />
+          <Property Name="sWarehouseNameId" Type="Int32" Nullable="false" />
+          <Property Name="sNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tStockDetail_tProduct" FromRole="tStockDetail" ToRole="tProduct" />
+          <NavigationProperty Name="tStockList" Relationship="Self.FK_tStockDetail_tStockList" FromRole="tStockDetail" ToRole="tStockList" />
+          <NavigationProperty Name="tWarehouseName" Relationship="Self.FK_tStockDetail_tWarehouseName" FromRole="tStockDetail" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tStockList">
+          <Key>
+            <PropertyRef Name="StockId" />
+          </Key>
+          <Property Name="StockId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sEmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="sStockSerialValue" Type="Int32" Nullable="false" />
+          <Property Name="sVendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sVendorTel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sStockDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="sStockNote" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tEmployee" Relationship="Self.FK_tStockList_tEmployee" FromRole="tStockList" ToRole="tEmployee" />
+          <NavigationProperty Name="tStockDetails" Relationship="Self.FK_tStockDetail_tStockList" FromRole="tStockList" ToRole="tStockDetail" />
+        </EntityType>
+        <EntityType Name="tTransfer">
+          <Key>
+            <PropertyRef Name="TransferId" />
+          </Key>
+          <Property Name="TransferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tProductId" Type="Int32" Nullable="false" />
+          <Property Name="tProductQty" Type="Int32" Nullable="false" />
+          <Property Name="tEmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="tWNIdOut" Type="Int32" Nullable="false" />
+          <Property Name="tWNIdIn" Type="Int32" Nullable="false" />
+          <Property Name="tDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tEmployee" Relationship="Self.FK_tTransfer_tEmployee" FromRole="tTransfer" ToRole="tEmployee" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tTransfer_tProduct" FromRole="tTransfer" ToRole="tProduct" />
+          <NavigationProperty Name="tWarehouseName" Relationship="Self.FK_tTransfer_tWarehouseIn" FromRole="tTransfer" ToRole="tWarehouseName" />
+          <NavigationProperty Name="tWarehouseName1" Relationship="Self.FK_tTransfer_tWarehouseOut" FromRole="tTransfer" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tWarehouse">
+          <Key>
+            <PropertyRef Name="WarehouseId" />
+          </Key>
+          <Property Name="WarehouseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseNameId" Type="Int32" Nullable="false" />
+          <Property Name="wProductId" Type="Int32" Nullable="false" />
+          <Property Name="wPQty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tProduct" Relationship="Self.FK_tWarehouse_tProduct" FromRole="tWarehouse" ToRole="tProduct" />
+          <NavigationProperty Name="tWarehouseName" Relationship="Self.FK_tWarehouse_tWarehouseName" FromRole="tWarehouse" ToRole="tWarehouseName" />
+        </EntityType>
+        <EntityType Name="tWarehouseName">
+          <Key>
+            <PropertyRef Name="WarehouseNameId" />
+          </Key>
+          <Property Name="WarehouseNameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WarehouseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tDiaries" Relationship="Self.FK_tDiary_tWarehouseName" FromRole="tWarehouseName" ToRole="tDiary" />
+          <NavigationProperty Name="tShipDetails" Relationship="Self.FK_tShipDetail_tWarehouseName" FromRole="tWarehouseName" ToRole="tShipDetail" />
+          <NavigationProperty Name="tStockDetails" Relationship="Self.FK_tStockDetail_tWarehouseName" FromRole="tWarehouseName" ToRole="tStockDetail" />
+          <NavigationProperty Name="tTransfers" Relationship="Self.FK_tTransfer_tWarehouseIn" FromRole="tWarehouseName" ToRole="tTransfer" />
+          <NavigationProperty Name="tTransfers1" Relationship="Self.FK_tTransfer_tWarehouseOut" FromRole="tWarehouseName" ToRole="tTransfer" />
+          <NavigationProperty Name="tWarehouses" Relationship="Self.FK_tWarehouse_tWarehouseName" FromRole="tWarehouseName" ToRole="tWarehouse" />
+          <NavigationProperty Name="tOrders" Relationship="MotaiDataModel.FK_tOrder_tWarehouseName" FromRole="tWarehouseName" ToRole="tOrder" />
+        </EntityType>
+        <Association Name="FK_tEmployee_tBranch">
+          <End Role="tBranch" Type="Self.tBranch" Multiplicity="1" />
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tBranch">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="tEmployee">
+              <PropertyRef Name="eBranch" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="0..1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStatus_tCustomer">
+          <End Role="tCustomer" Type="Self.tCustomer" Multiplicity="1" />
+          <End Role="tStatus" Type="Self.tStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCustomer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="tStatus">
+              <PropertyRef Name="sCustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiary_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="dEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDiary_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tDiary" Type="Self.tDiary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tDiary">
+              <PropertyRef Name="dWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tEmployee_tPosition">
+          <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPosition">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="tEmployee">
+              <PropertyRef Name="ePosition" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="0..1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipList_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tShipList">
+              <PropertyRef Name="sEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockList_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tStockList" Type="Self.tStockList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tStockList">
+              <PropertyRef Name="sEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tEmployee">
+          <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tFavorite_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tFavorite" Type="Self.tFavorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tFavorite">
+              <PropertyRef Name="fProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrder_tPromotion">
+          <End Role="tPromotion" Type="Self.tPromotion" Multiplicity="1" />
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tPromotion">
+              <PropertyRef Name="PromotionId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderDetail_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tOrderDetail">
+              <PropertyRef Name="oOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderPay_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tOrderPay" Type="Self.tOrderPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tOrderPay">
+              <PropertyRef Name="oOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipList_tOrder">
+          <End Role="tOrder" Type="Self.tOrder" Multiplicity="1" />
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrder">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="tShipList">
+              <PropertyRef Name="sOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tOrderDetail">
+              <PropertyRef Name="oProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tOrderDetail">
+          <End Role="tOrderDetail" Type="Self.tOrderDetail" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrderDetail">
+              <PropertyRef Name="oOrderDetailId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sOrderDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tOrderPay_tOrderPayType">
+          <End Role="tOrderPayType" Type="Self.tOrderPayType" Multiplicity="1" />
+          <End Role="tOrderPay" Type="Self.tOrderPay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tOrderPayType">
+              <PropertyRef Name="oPayTypeId" />
+            </Principal>
+            <Dependent Role="tOrderPay">
+              <PropertyRef Name="oPayType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductCategory">
+          <End Role="tProductCategory" Type="Self.tProductCategory" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductCategory">
+              <PropertyRef Name="pCategoryId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductMaterial">
+          <End Role="tProductMaterial" Type="Self.tProductMaterial" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductMaterial">
+              <PropertyRef Name="pMaterialId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProduct_tProductSize">
+          <End Role="tProductSize" Type="Self.tProductSize" Multiplicity="1" />
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProductSize">
+              <PropertyRef Name="pSizeId" />
+            </Principal>
+            <Dependent Role="tProduct">
+              <PropertyRef Name="pSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tProductImage_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tProductImage" Type="Self.tProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStatus_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tStatus" Type="Self.tStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tStatus">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tWarehouse_tProduct">
+          <End Role="tProduct" Type="Self.tProduct" Multiplicity="1" />
+          <End Role="tWarehouse" Type="Self.tWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProduct">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="tWarehouse">
+              <PropertyRef Name="wProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tPromotion_tPromotionCategory">
+          <End Role="tPromotionCategory" Type="Self.tPromotionCategory" Multiplicity="1" />
+          <End Role="tPromotion" Type="Self.tPromotion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tPromotionCategory">
+              <PropertyRef Name="PromotionCategoryID" />
+            </Principal>
+            <Dependent Role="tPromotion">
+              <PropertyRef Name="PromotinoCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tShipList">
+          <End Role="tShipList" Type="Self.tShipList" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tShipList">
+              <PropertyRef Name="ShipId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="ShipId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tShipDetail_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tShipDetail" Type="Self.tShipDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tShipDetail">
+              <PropertyRef Name="sWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tStockList">
+          <End Role="tStockList" Type="Self.tStockList" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tStockList">
+              <PropertyRef Name="StockId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sStockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tStockDetail_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tStockDetail" Type="Self.tStockDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tStockDetail">
+              <PropertyRef Name="sWarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tWarehouseIn">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tWNIdIn" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTransfer_tWarehouseOut">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tTransfer" Type="Self.tTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tTransfer">
+              <PropertyRef Name="tWNIdOut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tWarehouse_tWarehouseName">
+          <End Role="tWarehouseName" Type="Self.tWarehouseName" Multiplicity="1" />
+          <End Role="tWarehouse" Type="Self.tWarehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tWarehouse">
+              <PropertyRef Name="WarehouseNameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MotaiDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tBranches" EntityType="Self.tBranch" />
+          <EntitySet Name="tCustomers" EntityType="Self.tCustomer" />
+          <EntitySet Name="tDiaries" EntityType="Self.tDiary" />
+          <EntitySet Name="tEmployees" EntityType="Self.tEmployee" />
+          <EntitySet Name="tFavorites" EntityType="Self.tFavorite" />
+          <EntitySet Name="tOrders" EntityType="Self.tOrder" />
+          <EntitySet Name="tOrderDetails" EntityType="Self.tOrderDetail" />
+          <EntitySet Name="tOrderPays" EntityType="Self.tOrderPay" />
+          <EntitySet Name="tOrderPayTypes" EntityType="Self.tOrderPayType" />
+          <EntitySet Name="tPositions" EntityType="Self.tPosition" />
+          <EntitySet Name="tProducts" EntityType="Self.tProduct" />
+          <EntitySet Name="tProductCategories" EntityType="Self.tProductCategory" />
+          <EntitySet Name="tProductImages" EntityType="Self.tProductImage" />
+          <EntitySet Name="tProductMaterials" EntityType="Self.tProductMaterial" />
+          <EntitySet Name="tProductSizes" EntityType="Self.tProductSize" />
+          <EntitySet Name="tPromotions" EntityType="Self.tPromotion" />
+          <EntitySet Name="tPromotionCategories" EntityType="Self.tPromotionCategory" />
+          <EntitySet Name="tShipDetails" EntityType="Self.tShipDetail" />
+          <EntitySet Name="tShipLists" EntityType="Self.tShipList" />
+          <EntitySet Name="tStatus" EntityType="Self.tStatu" />
+          <EntitySet Name="tStockDetails" EntityType="Self.tStockDetail" />
+          <EntitySet Name="tStockLists" EntityType="Self.tStockList" />
+          <EntitySet Name="tTransfers" EntityType="Self.tTransfer" />
+          <EntitySet Name="tWarehouses" EntityType="Self.tWarehouse" />
+          <EntitySet Name="tWarehouseNames" EntityType="Self.tWarehouseName" />
+          <AssociationSet Name="FK_tEmployee_tBranch" Association="Self.FK_tEmployee_tBranch">
+            <End Role="tBranch" EntitySet="tBranches" />
+            <End Role="tEmployee" EntitySet="tEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tCustomer" Association="Self.FK_tFavorite_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomers" />
+            <End Role="tFavorite" EntitySet="tFavorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tCustomer" Association="Self.FK_tOrder_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomers" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStatus_tCustomer" Association="Self.FK_tStatus_tCustomer">
+            <End Role="tCustomer" EntitySet="tCustomers" />
+            <End Role="tStatus" EntitySet="tStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiary_tEmployee" Association="Self.FK_tDiary_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployees" />
+            <End Role="tDiary" EntitySet="tDiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDiary_tWarehouseName" Association="Self.FK_tDiary_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tDiary" EntitySet="tDiaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tEmployee_tPosition" Association="Self.FK_tEmployee_tPosition">
+            <End Role="tPosition" EntitySet="tPositions" />
+            <End Role="tEmployee" EntitySet="tEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tEmployee" Association="Self.FK_tOrder_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployees" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipList_tEmployee" Association="Self.FK_tShipList_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployees" />
+            <End Role="tShipList" EntitySet="tShipLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockList_tEmployee" Association="Self.FK_tStockList_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployees" />
+            <End Role="tStockList" EntitySet="tStockLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tEmployee" Association="Self.FK_tTransfer_tEmployee">
+            <End Role="tEmployee" EntitySet="tEmployees" />
+            <End Role="tTransfer" EntitySet="tTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tFavorite_tProduct" Association="Self.FK_tFavorite_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tFavorite" EntitySet="tFavorites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tPromotion" Association="Self.FK_tOrder_tPromotion">
+            <End Role="tPromotion" EntitySet="tPromotions" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderDetail_tOrder" Association="Self.FK_tOrderDetail_tOrder">
+            <End Role="tOrder" EntitySet="tOrders" />
+            <End Role="tOrderDetail" EntitySet="tOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderPay_tOrder" Association="Self.FK_tOrderPay_tOrder">
+            <End Role="tOrder" EntitySet="tOrders" />
+            <End Role="tOrderPay" EntitySet="tOrderPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipList_tOrder" Association="Self.FK_tShipList_tOrder">
+            <End Role="tOrder" EntitySet="tOrders" />
+            <End Role="tShipList" EntitySet="tShipLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderDetail_tProduct" Association="Self.FK_tOrderDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tOrderDetail" EntitySet="tOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tOrderDetail" Association="Self.FK_tShipDetail_tOrderDetail">
+            <End Role="tOrderDetail" EntitySet="tOrderDetails" />
+            <End Role="tShipDetail" EntitySet="tShipDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrderPay_tOrderPayType" Association="Self.FK_tOrderPay_tOrderPayType">
+            <End Role="tOrderPayType" EntitySet="tOrderPayTypes" />
+            <End Role="tOrderPay" EntitySet="tOrderPays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductCategory" Association="Self.FK_tProduct_tProductCategory">
+            <End Role="tProductCategory" EntitySet="tProductCategories" />
+            <End Role="tProduct" EntitySet="tProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductMaterial" Association="Self.FK_tProduct_tProductMaterial">
+            <End Role="tProductMaterial" EntitySet="tProductMaterials" />
+            <End Role="tProduct" EntitySet="tProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProduct_tProductSize" Association="Self.FK_tProduct_tProductSize">
+            <End Role="tProductSize" EntitySet="tProductSizes" />
+            <End Role="tProduct" EntitySet="tProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tProductImage_tProduct" Association="Self.FK_tProductImage_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tProductImage" EntitySet="tProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tProduct" Association="Self.FK_tShipDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tShipDetail" EntitySet="tShipDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStatus_tProduct" Association="Self.FK_tStatus_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tStatus" EntitySet="tStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tProduct" Association="Self.FK_tStockDetail_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tStockDetail" EntitySet="tStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tProduct" Association="Self.FK_tTransfer_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tTransfer" EntitySet="tTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tWarehouse_tProduct" Association="Self.FK_tWarehouse_tProduct">
+            <End Role="tProduct" EntitySet="tProducts" />
+            <End Role="tWarehouse" EntitySet="tWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tPromotion_tPromotionCategory" Association="Self.FK_tPromotion_tPromotionCategory">
+            <End Role="tPromotionCategory" EntitySet="tPromotionCategories" />
+            <End Role="tPromotion" EntitySet="tPromotions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tShipList" Association="Self.FK_tShipDetail_tShipList">
+            <End Role="tShipList" EntitySet="tShipLists" />
+            <End Role="tShipDetail" EntitySet="tShipDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tShipDetail_tWarehouseName" Association="Self.FK_tShipDetail_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tShipDetail" EntitySet="tShipDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tStockList" Association="Self.FK_tStockDetail_tStockList">
+            <End Role="tStockList" EntitySet="tStockLists" />
+            <End Role="tStockDetail" EntitySet="tStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tStockDetail_tWarehouseName" Association="Self.FK_tStockDetail_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tStockDetail" EntitySet="tStockDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tWarehouseIn" Association="Self.FK_tTransfer_tWarehouseIn">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tTransfer" EntitySet="tTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTransfer_tWarehouseOut" Association="Self.FK_tTransfer_tWarehouseOut">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tTransfer" EntitySet="tTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tWarehouse_tWarehouseName" Association="Self.FK_tWarehouse_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tWarehouse" EntitySet="tWarehouses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tOrder_tWarehouseName" Association="MotaiDataModel.FK_tOrder_tWarehouseName">
+            <End Role="tWarehouseName" EntitySet="tWarehouseNames" />
+            <End Role="tOrder" EntitySet="tOrders" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tOrder_tWarehouseName">
+          <End Type="MotaiDataModel.tWarehouseName" Role="tWarehouseName" Multiplicity="0..1" />
+          <End Type="MotaiDataModel.tOrder" Role="tOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tWarehouseName">
+              <PropertyRef Name="WarehouseNameId" />
+            </Principal>
+            <Dependent Role="tOrder">
+              <PropertyRef Name="oWarehouseName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MotaiDataModelStoreContainer" CdmEntityContainer="MotaiDataEntities">
+          <EntitySetMapping Name="tBranches">
+            <EntityTypeMapping TypeName="MotaiDataModel.tBranch">
+              <MappingFragment StoreEntitySet="tBranch">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="bBranch" ColumnName="bBranch" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCustomers">
+            <EntityTypeMapping TypeName="MotaiDataModel.tCustomer">
+              <MappingFragment StoreEntitySet="tCustomer">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="cAccount" ColumnName="cAccount" />
+                <ScalarProperty Name="cPassword" ColumnName="cPassword" />
+                <ScalarProperty Name="cName" ColumnName="cName" />
+                <ScalarProperty Name="cTelePhone" ColumnName="cTelePhone" />
+                <ScalarProperty Name="cCellPhone" ColumnName="cCellPhone" />
+                <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+                <ScalarProperty Name="cGUI" ColumnName="cGUI" />
+                <ScalarProperty Name="cEmail" ColumnName="cEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tDiaries">
+            <EntityTypeMapping TypeName="MotaiDataModel.tDiary">
+              <MappingFragment StoreEntitySet="tDiary">
+                <ScalarProperty Name="DiaryId" ColumnName="DiaryId" />
+                <ScalarProperty Name="dEmployeeId" ColumnName="dEmployeeId" />
+                <ScalarProperty Name="dDate" ColumnName="dDate" />
+                <ScalarProperty Name="dWeather" ColumnName="dWeather" />
+                <ScalarProperty Name="dDiaryNote" ColumnName="dDiaryNote" />
+                <ScalarProperty Name="dWarehouseNameId" ColumnName="dWarehouseNameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tEmployees">
+            <EntityTypeMapping TypeName="MotaiDataModel.tEmployee">
+              <MappingFragment StoreEntitySet="tEmployee">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="eAccount" ColumnName="eAccount" />
+                <ScalarProperty Name="eName" ColumnName="eName" />
+                <ScalarProperty Name="ePosition" ColumnName="ePosition" />
+                <ScalarProperty Name="eBranch" ColumnName="eBranch" />
+                <ScalarProperty Name="ePassword" ColumnName="ePassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFavorites">
+            <EntityTypeMapping TypeName="MotaiDataModel.tFavorite">
+              <MappingFragment StoreEntitySet="tFavorite">
+                <ScalarProperty Name="FavoriteId" ColumnName="FavoriteId" />
+                <ScalarProperty Name="fCustomerId" ColumnName="fCustomerId" />
+                <ScalarProperty Name="fProductId" ColumnName="fProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrders">
+            <EntityTypeMapping TypeName="MotaiDataModel.tOrder">
+              <MappingFragment StoreEntitySet="tOrder">
+                <ScalarProperty Name="oWarehouseName" ColumnName="oWarehouseName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="oCustomerId" ColumnName="oCustomerId" />
+                <ScalarProperty Name="oAddress" ColumnName="oAddress" />
+                <ScalarProperty Name="oDate" ColumnName="oDate" />
+                <ScalarProperty Name="oDeliverDate" ColumnName="oDeliverDate" />
+                <ScalarProperty Name="oEmployeeId" ColumnName="oEmployeeId" />
+                <ScalarProperty Name="oCheck" ColumnName="oCheck" />
+                <ScalarProperty Name="oCheckDate" ColumnName="oCheckDate" />
+                <ScalarProperty Name="oPromotionId" ColumnName="oPromotionId" />
+                <ScalarProperty Name="cNote" ColumnName="cNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrderDetails">
+            <EntityTypeMapping TypeName="MotaiDataModel.tOrderDetail">
+              <MappingFragment StoreEntitySet="tOrderDetail">
+                <ScalarProperty Name="oOrderDetailId" ColumnName="oOrderDetailId" />
+                <ScalarProperty Name="oOrderId" ColumnName="oOrderId" />
+                <ScalarProperty Name="oProductId" ColumnName="oProductId" />
+                <ScalarProperty Name="oProductQty" ColumnName="oProductQty" />
+                <ScalarProperty Name="oNote" ColumnName="oNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrderPays">
+            <EntityTypeMapping TypeName="MotaiDataModel.tOrderPay">
+              <MappingFragment StoreEntitySet="tOrderPay">
+                <ScalarProperty Name="oPayId" ColumnName="oPayId" />
+                <ScalarProperty Name="oOrderId" ColumnName="oOrderId" />
+                <ScalarProperty Name="oOrderInstallment" ColumnName="oOrderInstallment" />
+                <ScalarProperty Name="oPayType" ColumnName="oPayType" />
+                <ScalarProperty Name="oPayment" ColumnName="oPayment" />
+                <ScalarProperty Name="oPayDate" ColumnName="oPayDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tOrderPayTypes">
+            <EntityTypeMapping TypeName="MotaiDataModel.tOrderPayType">
+              <MappingFragment StoreEntitySet="tOrderPayType">
+                <ScalarProperty Name="oPayTypeId" ColumnName="oPayTypeId" />
+                <ScalarProperty Name="oPayType" ColumnName="oPayType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPositions">
+            <EntityTypeMapping TypeName="MotaiDataModel.tPosition">
+              <MappingFragment StoreEntitySet="tPosition">
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="pPosition" ColumnName="pPosition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProducts">
+            <EntityTypeMapping TypeName="MotaiDataModel.tProduct">
+              <MappingFragment StoreEntitySet="tProduct">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="pNumber" ColumnName="pNumber" />
+                <ScalarProperty Name="pName" ColumnName="pName" />
+                <ScalarProperty Name="pCategory" ColumnName="pCategory" />
+                <ScalarProperty Name="pMaterial" ColumnName="pMaterial" />
+                <ScalarProperty Name="pSize" ColumnName="pSize" />
+                <ScalarProperty Name="pLxWxH" ColumnName="pLxWxH" />
+                <ScalarProperty Name="pWeight" ColumnName="pWeight" />
+                <ScalarProperty Name="pIntroduction" ColumnName="pIntroduction" />
+                <ScalarProperty Name="pPrice" ColumnName="pPrice" />
+                <ScalarProperty Name="pQty" ColumnName="pQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProductCategories">
+            <EntityTypeMapping TypeName="MotaiDataModel.tProductCategory">
+              <MappingFragment StoreEntitySet="tProductCategory">
+                <ScalarProperty Name="pCategoryId" ColumnName="pCategoryId" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProductImages">
+            <EntityTypeMapping TypeName="MotaiDataModel.tProductImage">
+              <MappingFragment StoreEntitySet="tProductImage">
+                <ScalarProperty Name="pImageId" ColumnName="pImageId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="pImage" ColumnName="pImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProductMaterials">
+            <EntityTypeMapping TypeName="MotaiDataModel.tProductMaterial">
+              <MappingFragment StoreEntitySet="tProductMaterial">
+                <ScalarProperty Name="pMaterialId" ColumnName="pMaterialId" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProductSizes">
+            <EntityTypeMapping TypeName="MotaiDataModel.tProductSize">
+              <MappingFragment StoreEntitySet="tProductSize">
+                <ScalarProperty Name="pSizeId" ColumnName="pSizeId" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPromotions">
+            <EntityTypeMapping TypeName="MotaiDataModel.tPromotion">
+              <MappingFragment StoreEntitySet="tPromotion">
+                <ScalarProperty Name="PromotionId" ColumnName="PromotionId" />
+                <ScalarProperty Name="PromotionName" ColumnName="PromotionName" />
+                <ScalarProperty Name="PromotinoCategory" ColumnName="PromotinoCategory" />
+                <ScalarProperty Name="PromotionDescription" ColumnName="PromotionDescription" />
+                <ScalarProperty Name="pPromotionStartDate" ColumnName="pPromotionStartDate" />
+                <ScalarProperty Name="pPromotionDeadline" ColumnName="pPromotionDeadline" />
+                <ScalarProperty Name="pPromotionWeb" ColumnName="pPromotionWeb" />
+                <ScalarProperty Name="pADimage" ColumnName="pADimage" />
+                <ScalarProperty Name="pDiscountCode" ColumnName="pDiscountCode" />
+                <ScalarProperty Name="pDiscount" ColumnName="pDiscount" />
+                <ScalarProperty Name="pPromotionPostDate" ColumnName="pPromotionPostDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPromotionCategories">
+            <EntityTypeMapping TypeName="MotaiDataModel.tPromotionCategory">
+              <MappingFragment StoreEntitySet="tPromotionCategory">
+                <ScalarProperty Name="PromotionCategoryID" ColumnName="PromotionCategoryID" />
+                <ScalarProperty Name="PromtionCategory" ColumnName="PromtionCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tShipDetails">
+            <EntityTypeMapping TypeName="MotaiDataModel.tShipDetail">
+              <MappingFragment StoreEntitySet="tShipDetail">
+                <ScalarProperty Name="ShipDetailId" ColumnName="ShipDetailId" />
+                <ScalarProperty Name="ShipId" ColumnName="ShipId" />
+                <ScalarProperty Name="sOrderDetailId" ColumnName="sOrderDetailId" />
+                <ScalarProperty Name="sProductId" ColumnName="sProductId" />
+                <ScalarProperty Name="sQuantity" ColumnName="sQuantity" />
+                <ScalarProperty Name="sWarehouseNameId" ColumnName="sWarehouseNameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tShipLists">
+            <EntityTypeMapping TypeName="MotaiDataModel.tShipList">
+              <MappingFragment StoreEntitySet="tShipList">
+                <ScalarProperty Name="ShipId" ColumnName="ShipId" />
+                <ScalarProperty Name="sEmployeeId" ColumnName="sEmployeeId" />
+                <ScalarProperty Name="sShipSerialValue" ColumnName="sShipSerialValue" />
+                <ScalarProperty Name="sOrderId" ColumnName="sOrderId" />
+                <ScalarProperty Name="sShipDate" ColumnName="sShipDate" />
+                <ScalarProperty Name="sShipNote" ColumnName="sShipNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tStatus">
+            <EntityTypeMapping TypeName="MotaiDataModel.tStatu">
+              <MappingFragment StoreEntitySet="tStatus">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="sCustomerId" ColumnName="sCustomerId" />
+                <ScalarProperty Name="sProductId" ColumnName="sProductId" />
+                <ScalarProperty Name="sProductQty" ColumnName="sProductQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tStockDetails">
+            <EntityTypeMapping TypeName="MotaiDataModel.tStockDetail">
+              <MappingFragment StoreEntitySet="tStockDetail">
+                <ScalarProperty Name="StockDetailId" ColumnName="StockDetailId" />
+                <ScalarProperty Name="sStockId" ColumnName="sStockId" />
+                <ScalarProperty Name="sProductId" ColumnName="sProductId" />
+                <ScalarProperty Name="sCost" ColumnName="sCost" />
+                <ScalarProperty Name="sQuantity" ColumnName="sQuantity" />
+                <ScalarProperty Name="sWarehouseNameId" ColumnName="sWarehouseNameId" />
+                <ScalarProperty Name="sNote" ColumnName="sNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tStockLists">
+            <EntityTypeMapping TypeName="MotaiDataModel.tStockList">
+              <MappingFragment StoreEntitySet="tStockList">
+                <ScalarProperty Name="StockId" ColumnName="StockId" />
+                <ScalarProperty Name="sEmployeeId" ColumnName="sEmployeeId" />
+                <ScalarProperty Name="sStockSerialValue" ColumnName="sStockSerialValue" />
+                <ScalarProperty Name="sVendor" ColumnName="sVendor" />
+                <ScalarProperty Name="sVendorTel" ColumnName="sVendorTel" />
+                <ScalarProperty Name="sStockDate" ColumnName="sStockDate" />
+                <ScalarProperty Name="sStockNote" ColumnName="sStockNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTransfers">
+            <EntityTypeMapping TypeName="MotaiDataModel.tTransfer">
+              <MappingFragment StoreEntitySet="tTransfer">
+                <ScalarProperty Name="TransferId" ColumnName="TransferId" />
+                <ScalarProperty Name="tProductId" ColumnName="tProductId" />
+                <ScalarProperty Name="tProductQty" ColumnName="tProductQty" />
+                <ScalarProperty Name="tEmployeeId" ColumnName="tEmployeeId" />
+                <ScalarProperty Name="tWNIdOut" ColumnName="tWNIdOut" />
+                <ScalarProperty Name="tWNIdIn" ColumnName="tWNIdIn" />
+                <ScalarProperty Name="tDate" ColumnName="tDate" />
+                <ScalarProperty Name="tNote" ColumnName="tNote" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tWarehouses">
+            <EntityTypeMapping TypeName="MotaiDataModel.tWarehouse">
+              <MappingFragment StoreEntitySet="tWarehouse">
+                <ScalarProperty Name="WarehouseId" ColumnName="WarehouseId" />
+                <ScalarProperty Name="WarehouseNameId" ColumnName="WarehouseNameId" />
+                <ScalarProperty Name="wProductId" ColumnName="wProductId" />
+                <ScalarProperty Name="wPQty" ColumnName="wPQty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tWarehouseNames">
+            <EntityTypeMapping TypeName="MotaiDataModel.tWarehouseName">
+              <MappingFragment StoreEntitySet="tWarehouseName">
+                <ScalarProperty Name="WarehouseNameId" ColumnName="WarehouseNameId" />
+                <ScalarProperty Name="WarehouseName" ColumnName="WarehouseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

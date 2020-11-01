@@ -1,0 +1,266 @@
+﻿@model IEnumerable<MotaiProject.ViewModels.StatusCartViewModel>
+@*@model MotaiProject.ViewModels.StatusCustomerViewModel*@
+@using MotaiProject.Models
+
+@{
+    /**/
+    decimal count = 0;
+    ViewBag.Title = "購物車清單";
+    Layout = "~/Views/Shared/_Layout登入.cshtml";
+    tCustomer cust = Session[CSession關鍵字.SK_LOGINED_CUSTOMER] as tCustomer;
+}
+<style>
+    .wrapper {
+        position: relative;
+        width: 80%;
+        height: 300px;
+        overflow: hidden;
+        margin: 100px auto;
+    }
+
+    ul.slides {
+        width: 2200px;
+        left: 0px;
+        transition: all 1s;
+    }
+
+        ul.slides li {
+            width: 200px;
+            height: 300px;
+            overflow: hidden;
+            float: left;
+        }
+
+            ul.slides li img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+    .dot {
+        bottom: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+        .dot li {
+            border: 1px solid #fff;
+            /* border-radius: 50%; */
+            margin: 0 5px;
+            width: 24px;
+            height: 10px;
+        }
+
+    /* .dot li:hover{
+            background: #fff;
+        } */
+    .slide_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        bottom: 0;
+        width: 30px;
+        color: #fff;
+        position: absolute;
+        font-size: 24px;
+    }
+
+    #prevSlide {
+        left: 0;
+    }
+
+    #nextSlide {
+        right: 0;
+    }
+
+    .slide_btn i {
+        color: rgba(255, 255, 255, .6);
+        transition: .5s;
+    }
+
+    .slide_btn:hover i {
+        color: rgba(255, 255, 255, 1);
+    }
+</style>
+
+
+<div class="container">
+
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.pName)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.pPrice)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.sProductQty)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.pTotal)
+                </th>
+                <th scope="col">
+                    刪除
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.pName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sProductQty)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pTotal)
+                    </td>
+                    <td>
+                        @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                        @Html.ActionLink("刪除", "購物車內刪除", "Customer", new { fId = item.StatusId },
+    new { OnClick= "return confirm('確定要刪除嗎?')",Class="btn btn-danger" })
+                    </td>
+                </tr>
+                count += item.pTotal;
+            }
+        </tbody>
+    </table>
+    <div>
+        <div style="display:inline-grid">
+            <p>@Html.RadioButton("address", cust.cAddress, true, false)自家住宅</p>
+            <p>@Html.RadioButton("address", cust.cAddress, false, true)門市 </p>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    1.本站以您的Email或手機號碼為購物帳號，將以此帳號提供購物及查詢訂單服務。
+                    <br />如以手機號碼為購物帳號，建議可新增常用Email，日後可快速查詢客服回應資訊。
+                </li>
+                <li>2.您的交易記錄會留存於該次購物所用帳號內。如果更換綁定手機號碼，需查詢過往交易記錄時，請以更換後的手機號碼查詢即可。</li>
+                <li> 3.不同帳號的交易紀錄無法移轉。</li>
+            </ul>
+        </div>
+
+        <div>
+            訂單資訊
+            <hr />
+            <div id="info"></div>
+            <script>
+                document.querySelector("#info").innerHTML = "小計: 新台幣"+@count+"元";
+            </script>
+            運費
+            <br />
+            折扣
+            <br />
+            <button type="button" class="btn btn-dark" onclick="">確定結帳</button>
+        </div>
+
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="wrapper">
+                <ul class="slides">
+                    @for (int i = 1; i < 11; i++)
+                    {
+                        <li>
+                            <img id="orderimg@(i)" src=""
+                                 alt="">
+                        </li>
+                    }
+                </ul>
+                <div id="prevSlide" class="slide_btn">
+                    <i class="carousel-control-prev-icon"></i>
+                </div>
+                <div id="nextSlide" class="slide_btn">
+                    <i class="carousel-control-next-icon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        (function favororder() {
+            fetch('/Customer/購買排名', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+            },
+        }).then(function (response) {
+            return response.json();
+                }).then(function (data) {
+                    //console.log((try { } catch{ }) ? "yes" : "arg");
+                    //console.log(data.favorOrderby[0]["Pid"])
+                    for (let i = 1; i < 11; i++) {
+                        let xx = $(`#orderimg${i}`);
+                        xx.attr("src", "https://sites.google.com/a/netcmmi.com/share/_/rsrc/1473734124982/img/png/s/star-e01.png");
+                        let S = data.buyOrderby[i-1]["Pid"];
+                        xx.attr("onclick", `javascript:location.href='@Url.Action("產品細節", "Customer")?ProductId=${S}'`)
+                    }
+
+        });
+        })()
+    </script>
+
+
+    <script>
+        $(function () {
+
+            let slideNum = 0;
+            let slideCount = $(".slides li").length;
+            let lastIndex = slideCount - 1;
+
+            function setPlay() {
+                show();
+                slideNum++
+                if (slideNum > lastIndex) {
+                    slideNum = 0;
+                }
+            }
+
+            function stopPlay() {
+                clearInterval(play);
+            }
+
+            function show() {
+                let move = 0 - 200 * slideNum;
+                $(".dot li").eq(slideNum).css("background-color", "#fff").siblings().css("background-color", "transparent");
+                $("ul.slides").css("left", move);
+            }
+
+            $(".dot li").eq(0).css("background-color", "#fff").siblings().css("background-color", "transparent");
+            $(".dot li").mouseenter(function () {
+                slideNum = $(this).index();
+                show();
+            });
+
+            $("#prevSlide").click(function () {
+                slideNum--;
+                if (slideNum < 0) {
+                    slideNum = lastIndex;
+                }
+                show();
+            })
+
+            $("#nextSlide").click(function () {
+                slideNum++;
+                if (slideNum > lastIndex) {
+                    slideNum = 0;
+                }
+                show();
+            })
+
+        });
+    </script>
+

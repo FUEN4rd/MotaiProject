@@ -1,0 +1,289 @@
+﻿@model MotaiProject.ViewModels.MemberViewModel
+@using MotaiProject.Models
+
+@{
+    ViewBag.Title = "會員中心";
+    Layout = "~/Views/Shared/_Layout登入.cshtml";
+    tCustomer cust = Session[CSession關鍵字.SK_LOGINED_CUSTOMER] as tCustomer;
+}
+<style>
+    * {
+        color: #F2EDD8;
+        /*text-decoration: none;*/
+        /*font-weight: 500;*/
+    }
+
+    .modal-title {
+        color: black;
+    }
+
+    .modal-body {
+        color: black;
+    }
+
+    .Y_row {
+        font-size: 20px;
+    }
+
+    .Y_yellow {
+        color: #FCD492;
+    }
+
+    .Y_brown {
+        color: #A7674C;
+    }
+
+    a {
+        color: #F2EDD8;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: #F2EDD8;
+            text-decoration: none;
+        }
+
+    .Y_email a {
+        pointer-events: none;
+    }
+
+    .Y_memberName_border {
+        border-radius: 10px;
+        border-color: #FCD492;
+        border-width: 2px;
+        border-style: solid;
+        padding: 30px;
+        display: flex;
+        width: 550px;
+        height: 250px;
+        margin-bottom: 50px;
+    }
+
+    .Y_memberAccount_border {
+        border-radius: 10px;
+        border-color: #FCD492;
+        border-width: 2px;
+        border-style: solid;
+        padding: 30px;
+        display: flex;
+        width: 550px;
+        margin-bottom: 50px;
+    }
+
+    .Y_member_row {
+        width: 350px;
+    }
+
+    .btn-Y_yellow {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-Y_yellow:hover {
+            color: #fff;
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-Y_yellow:focus, .btn-Y_yellow.focus {
+            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+        }
+
+        .btn-Y_yellow.disabled, .btn-Y_yellow:disabled {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-Y_yellow:not(:disabled):not(.disabled):active, .btn-Y_yellow:not(:disabled):not(.disabled).active,
+        .show > .btn-Y_yellow.dropdown-toggle {
+            color: #fff;
+            background-color: #0062cc;
+            border-color: #005cbf;
+        }
+
+            .btn-Y_yellow:not(:disabled):not(.disabled):active:focus, .btn-Y_yellow:not(:disabled):not(.disabled).active:focus,
+            .show > .btn-Y_yellow.dropdown-toggle:focus {
+                box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+            }
+</style>
+
+
+
+
+<div class="container">
+    <div class="row Y_row" style="align-items :center; justify-content:space-between">
+        <h2 class="Y_yellow">會員中心</h2>
+        <div>
+        </div>
+    </div>
+
+    <hr />
+    <div style="display:flex;justify-content:space-between">
+        <div class="Y_memberName_border">
+            <div style="display:flex;justify-content:space-between">
+                <div class="Y_member_row">
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cName)：
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(model => model.cName)
+                        </div>
+                    </div>
+
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cTelePhone)：
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(model => model.cTelePhone)
+                        </div>
+                    </div>
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cCellPhone)：
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(model => model.cCellPhone)
+                        </div>
+                    </div>
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cAddress)：
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(model => model.cAddress)
+                        </div>
+                    </div>
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cEmail)：
+                        </div>
+
+                        <div class="Y_email">
+                            @Html.DisplayFor(model => model.cEmail)
+                        </div>
+                    </div>
+                    <div class="row Y_row">
+                        <div>
+                            @Html.DisplayNameFor(model => model.cGUI)：
+                        </div>
+
+                        <div>
+                            @Html.DisplayFor(model => model.cGUI)
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    @Html.ActionLink("修改個人資料", "修改會員資料", new { @class = "btn-Y_yellow", CustomerId = cust.CustomerId, style = "color: #ff0000;" })
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="display:flex;justify-content:space-between">
+                <div class="Y_memberAccount_border">
+                    <div style="display:flex;justify-content:space-between">
+                        <div class="Y_member_row">
+                            <div class="row Y_row">
+                                <div>
+                                    @Html.DisplayNameFor(model => model.cAccount)：
+                                </div>
+
+                                <div>
+                                    @Html.DisplayFor(model => model.cAccount)
+                                </div>
+                            </div>
+                            <div class="row Y_row">
+                                <div>
+                                    @Html.DisplayNameFor(model => model.cPassword)：
+                                </div>
+                                <div>
+                                    <button class="btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        修改密碼
+                                    </button>
+                                </div>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body card-deck"  style="background-color:#A7674C;margin: 10px;">
+                                        <div>
+                                            舊密碼
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.cPassword, new { htmlAttributes = new { @class = "form-control", @id = "oldpass" } })
+                                            </div>
+                                        </div>
+
+
+                                        <div>
+                                            新密碼
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.cPassword, new { htmlAttributes = new { @class = "form-control", @id = "newpass" } })
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            確認密碼
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.cPassword, new { htmlAttributes = new { @class = "form-control", @id = "checkpass" } })
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-danger" id="changepassword" onclick="customerChangePassword()">修改密碼</button>
+                                        <p id="warning"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row"></div>
+</div>
+
+
+<script>
+    var pa = document.querySelectorAll(".form-control");
+    var oldpass = pa[0].value;
+    //var checkpass = pa[2].value;
+    //console.log(oldpass + "+" + checkpass);
+    const clearbox = (item) => {
+        item.value = "";
+        item.type = "Password";
+    }
+    pa.forEach(clearbox);    
+
+    function customerChangePassword() {
+        
+
+        let newpass = document.querySelector("#newpass").value;
+        let oldpass = document.querySelector("#oldpass").value;
+        let checkpass = document.querySelector("#checkpass").value;
+        if (newpass == checkpass) {
+            fetch('/Customer/CustomerChangePassword', {
+                method: 'POST',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: `CustomerId=${@cust.CustomerId}&cPassword=${newpass}&oldpass=${oldpass}`
+            }).then(function (response) {
+
+                return response.json();
+
+            }).then(function (data) {
+
+                $("#warning").text(data.msg);
+            });
+        }
+        else {
+            $("#warning").text("新密碼與確認密碼不符");
+        }
+        
+    }
+
+</script>
