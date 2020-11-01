@@ -18,8 +18,9 @@ namespace MotaiProject.ViewModels
         public decimal pPrice { get; set; }
         [DisplayName("購買數量")]
         public int sProductQty { get; set; }
+        public int pInt { get { return Convert.ToInt32(pPrice); } }
         [DisplayName("小計")]
-        public decimal pTotal { get; set; }
+        public int pTotal { get { return pInt * sProductQty; } }
     }
     //訂單付款
     public class Orderpay
