@@ -21,10 +21,6 @@ namespace MotaiProject.ViewModels
         public int pInt { get { return Convert.ToInt32(pPrice); } }
         [DisplayName("小計")]
         public int pTotal { get { return pInt * sProductQty; } }
-
-        public string pDiscountCode { get;set;}
-        public float pDiscount { get; set; }//需要消費額度
-        
     }
     //訂單付款
     public class Orderpay
